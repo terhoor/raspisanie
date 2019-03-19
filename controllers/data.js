@@ -87,14 +87,12 @@ module.exports.changeGroup = async function (req, res) {
     let newDb = db;
     let group = req.body;
 
-    newDb['groups'].forEach((groupF, i) => {
-      if (+groupF.id === +group.id) {
-        // newDb['groups'].splice(i, 1);
-        groupF = group;
-        // newDb['groups'].push(group);
-      };
-    })
-
+    for (let i = 0; i < newDb['groups'].length; i++) {
+      const oldGroup = newDb['groups'][i];
+      if (+oldGroup.id === +group.id) {
+        oldGroup.subjects = group.subjects;
+      }
+    }
     const dataW = JSON.stringify(newDb);
     // запись в файл
     fs.writeFile('shared/db.json', dataW, function (error) {
