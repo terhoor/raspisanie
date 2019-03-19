@@ -1,0 +1,39 @@
+<h2 class="header">{{title}}</h2>
+
+<div *ngIf="editMode" class="text-helper">
+  <em>Для изменения нажмите на предмет</em>
+</div>
+
+<table *ngIf="group && timeLesson && subjects; else loader" class="all-group-table simple-little-table">
+  <thead>
+    <tr>
+      <th>Пары</th>
+      <th *ngFor="let num of timeLesson; let i = index">
+        {{i + 1}}-я
+      </th>
+    </tr>
+    <tr>
+      <th>Время</th>
+      <th *ngFor="let time of timeLesson;">
+        {{time}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="for-groups-simple" *ngFor="let day of days; let i = index">
+      <td class="day">
+        {{day}}
+      </td>
+
+      <td *ngFor="let num of group.subjects[i]; let idx = index"
+        (click)="clickOnSubject(group, num, group.subjects[i], i, idx)">
+        {{subjects[num]}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

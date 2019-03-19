@@ -1,0 +1,32 @@
+<div class="box-close">
+    <div class="close" (click)="onNoClick()">&#10006;</div>
+  </div>
+  <h2 mat-dialog-title>Выберите группы для изменения</h2>
+  <div>
+  
+    <form [formGroup]="formEdit" (ngSubmit)="onSubmit()">
+      
+      <div class="input-field">
+        <mat-form-field>
+          <mat-select placeholder="Выберите группу" formControlName="groups">
+            <mat-option *ngFor="let group of groupsArray" [value]="group.id">
+              {{group.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <div mat-dialog-actions>
+  
+          <button type="submit" [disabled]="formEdit.invalid || formEdit.disabled"
+            class="waves-effect waves-light btn" mat-button>
+            Ок
+          </button>
+          <button type="button" mat-button (click)="onNoClick()">Cancel</button>
+        </div>
+  
+      </div>
+    </form>
+  
+  </div>

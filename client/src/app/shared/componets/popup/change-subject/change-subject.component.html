@@ -1,0 +1,37 @@
+<div class="box-close">
+  <div class="close" (click)="onNoClick()">&#10006;</div>
+</div>
+<h2 mat-dialog-title>Изменение предмета</h2>
+<div>
+  <form [formGroup]="formEditSubject" (ngSubmit)="onSubmit()">
+   
+
+    <div class="input-field">
+      <mat-form-field>
+        <mat-select placeholder="Предмет" formControlName="subject">
+          <mat-option *ngFor="let subject of info.subjects; let idx = index " [value]="subject">
+            {{subject}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
+    <div>
+      <div mat-dialog-actions>
+        
+        <button
+          type="submit"
+          [disabled]="!formEditSubject.dirty"
+          class="waves-effect waves-light btn"
+          mat-button
+          >
+            Ок
+        </button>
+        <button type="button" mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+        
+    </div>
+</form>
+</div>

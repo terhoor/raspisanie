@@ -1,0 +1,41 @@
+<div class="box-close">
+  <div class="close" (click)="onNoClick()">&#10006;</div>
+</div>
+<h2 mat-dialog-title>Создание группы</h2>
+<div>
+  <form [formGroup]="formCreate" (ngSubmit)="onSubmit()">
+    <div class="input-field">
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="name" placeholder="name"
+          [ngClass]="{'invalid': formCreate.get('name').invalid && formCreate.get('name').touched}">
+      </mat-form-field>
+      <div class="helper-text red-text" *ngIf="formCreate.get('name').invalid && formCreate.get('name').touched">
+        <span *ngIf="formCreate.get('name').errors['required']">
+          Название группы не может быть пустым
+        </span>
+      </div>
+    </div>
+
+    <div class="input-field">
+      <mat-form-field>
+        <mat-select placeholder="course" formControlName="course">
+          <mat-option *ngFor="let course of [1, 2, 3, 4]" [value]="course">
+            {{course}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <div mat-dialog-actions>
+
+        <button type="submit" [disabled]="formCreate.invalid || formCreate.disabled"
+          class="waves-effect waves-light btn" mat-button>
+          Ок
+        </button>
+        <button type="button" mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+
+    </div>
+  </form>
+</div>

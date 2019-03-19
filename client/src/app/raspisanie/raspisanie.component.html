@@ -1,0 +1,44 @@
+<h2 class="header">Расписание занятий студентов</h2>
+
+  <table *ngIf="groups$; else loader" class="all-group-table simple-little-table">
+    <thead>
+      <tr class="for-groups-head">
+        <th *ngFor="let course of [1,2,3,4]">{{course}} курс</th>
+      </tr>
+    </thead>
+    <tbody class="for-groups-block">
+      <tr class="for-groups">
+        <td *ngFor="let group of objGroups['1']">
+          <a [routerLink]="[group.id]">
+            {{group.name}}
+          </a>
+        </td>
+      </tr>
+      <tr class="for-groups">
+        <td *ngFor="let group of objGroups['2']">
+          <a [routerLink]="[group.id]">
+            {{group.name}}
+          </a>
+        </td>
+      </tr>
+      <tr class="for-groups">
+        <td *ngFor="let group of objGroups['3']">
+          <a [routerLink]="[group.id]">
+            {{group.name}}
+          </a>
+        </td>
+      </tr>
+      <tr class="for-groups">
+        <td *ngFor="let group of objGroups['4']">
+          <a [routerLink]="[group.id]">
+            {{group.name}}
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <ng-template #loader>
+    <app-loader></app-loader>
+  </ng-template>

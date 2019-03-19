@@ -1,0 +1,32 @@
+<div class="box-close">
+  <div class="close" (click)="onNoClick()">&#10006;</div>
+</div>
+<h2 mat-dialog-title>Удаление группы</h2>
+<div>
+
+  <form [formGroup]="formDelete" (ngSubmit)="onSubmit()">
+    
+    <div class="input-field">
+      <mat-form-field>
+        <mat-select placeholder="Выберите группу" formControlName="groups">
+          <mat-option *ngFor="let group of groupsArray" [value]="group.id">
+            {{group.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <div mat-dialog-actions>
+
+        <button type="submit" [disabled]="formDelete.invalid || formDelete.disabled"
+          class="waves-effect waves-light btn" mat-button>
+          Ок
+        </button>
+        <button type="button" mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+
+    </div>
+  </form>
+
+</div>
